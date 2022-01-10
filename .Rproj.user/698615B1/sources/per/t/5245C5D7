@@ -1,0 +1,26 @@
+{
+    "id": "5245C5D7",
+    "path": "~/R/Rpackages/trout.modlR/R/model_output_app.R",
+    "project_path": "R/model_output_app.R",
+    "type": "r_source",
+    "hash": "2083368139",
+    "contents": "",
+    "dirty": false,
+    "created": 1641690701630.0,
+    "source_on_save": false,
+    "relative_order": 7,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "23,41",
+        "scrollLine": "20"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1641701902,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1641701903032,
+    "read_only": false,
+    "read_only_alternatives": []
+}
