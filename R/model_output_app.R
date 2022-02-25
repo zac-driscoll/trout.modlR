@@ -44,14 +44,10 @@ model_output_app <- function() {
                       )
                     ))
   )
-
-
     server <- function(input, output, session) {
       model_data <- select_output_server("dataset")
       graph_catchplot_server("catchplot",model_data)
       shiny_bms_plot_server("BMS_plot",model_data)
-
     }
-
     shiny::runApp(shiny::shinyApp(ui, server),launch.browser = TRUE)
   }

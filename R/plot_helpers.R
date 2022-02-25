@@ -7,6 +7,8 @@
 #'
 #' @return A ggplot2 theme
 #'
+#' @noRd
+#'
 #' @examples ggplot2::ggplot() + format_axis(1)
 format_axis <- function(form){
  if(form == 1){
@@ -36,6 +38,7 @@ format_axis <- function(form){
 #'
 #' @return A ggplot2 theme
 #'
+#' @noRd
 #' @examples ggplot2::ggplot() + format_legend("top")
 format_legend <- function(side) {
   if (side == "top") {

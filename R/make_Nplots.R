@@ -12,6 +12,8 @@
 #' @return A ggplot object
 #' @export
 #'
+#' @noRd
+#'
 #' @examples graph_nplot()
 graph_Nplot <-
   function(data,type,title = "Y",ymax = 0) {

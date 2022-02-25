@@ -1,0 +1,40 @@
+---
+title: "GetParameters"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{GetParameters}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(trout.modlR)
+```
+
+The \code{get_parameter} function is used to parse data from an rdat
+file.  This is blah blah blah
+
+```{r get_param}
+get_parameter(dat = gb_wf_ar,param_name = "years")
+```
+<br>
+The \code{get_parameter} function is used to parse data from an rdat
+file.  This is blah blah blah
+
+```{r get_params}
+get_parameters(dat = gb_wf_ar,param_name = c("years","ages"))
+```
+
+## Pararameter Lookup Table 
+The parameter_names table lists all availble options with their descriptions.
+
+```{r param_names, echo = FALSE}
+DT::datatable(parameter_names)
+```

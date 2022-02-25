@@ -1,7 +1,27 @@
-#' Get model Parameter
+#' Get model Parameters
 #'
-#' This function takes an .rdat file output by ADMB and a param_name
+#' These functions takes an .rdat file output by ADMB and a param_name. The function
+#' will return data for the given parameter.  See parameter_lookup to see
+#' available options.
 #'
+#'
+#' @param dat A list
+#' @param param_name A parameter name (s)
+#'
+#' @return A vector
+#' @export
+#'
+#'
+#' @examples get_parameters(gb_wf_ar,"years")
+get_parameters <- function(dat,param_names){
+  params <- purrr::map(.x = param_names,
+                       .f = ~get_parameter(param_name = .x,dat = dat))
+  names(params) <- param_names
+  params
+}
+
+
+#' Get Parameter
 #'
 #' @param dat
 #' @param param_name
@@ -40,25 +60,6 @@ get_parameter <- function(dat,param_name){
          "obsTPcat" = dat$obsTPcat,
          "obsTWcat" = dat$obsTWcat,
          "obsRCcat" = dat$obsRCcat
-
     )
   param
 }
-
-#' Get model Parameters
-#'
-#' @param dat
-#' @param param_names
-#'
-#' @return
-#' @export
-#'
-#' @examples
-get_parameters <- function(dat,param_names){
-  params <- purrr::map(.x = param_names,
-                       .f = ~get_parameter(param_name = .x,dat = dat))
-  names(params) <- param_names
-  params
-}
-
-
