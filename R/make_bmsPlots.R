@@ -19,71 +19,55 @@ make_bmsPlot <-
            title = NULL,
            ymax = NULL,
            plotly_plot = FALSE) {
-    params <-
-      get_parameters(dat, c("Biomass", "SpBio", "years", "mu", "spp"))
-    #assign parameters to environment
-    for (i in 1:length(params)) {
-      assign(unlist(names(params[i])),
-             unlist(params[i]))
-    }
-    #read in biomass and spawning biomass
-    bio1 <-
-      data.frame(cbind(years,
-                       (Biomass * 2.2046) / 1000,
-                       (SpBio * 2.2046) / 1000)) #convert to pounds
-    colnames(bio1) <- c("year", "biomass", "spbiomass")
-
-    #plot options
+  #get data
+    bio <- get_biomass_data(gb_wf_ar)
+  #plot options
     #format title
     gtitle <- if (is.null(title)) {
-      paste0("Estimated ", spp, " Biomass in ", mu)
+      paste0("Estimated ", bio$species[1], " Biomass in ", bio$mu[1])
     } else {
       title
     }
     #y-axis maximum value for plot
     if (is.null(ymax)) {
-      ymax <- max(bio1[, 2:3])
+      ymax <- max(bio$result)
     }
     #Line plot with biomass and spawning biomass
     p <-
-      ggplot2::ggplot(bio1, ggplot2::aes(x = year)) +
-      #plot data
-      ggplot2::geom_line(ggplot2::aes(
-        y = biomass,
-        colour = "biomass",
-        linetype = "biomass"
-      )) +
-      ggplot2::geom_point(ggplot2::aes(y = biomass,
-                                       colour = "biomass")) +
-      ggplot2::geom_point(ggplot2::aes(y = spbiomass,
-                                       colour = "spbiomass"),
-                          shape = 1) +
-      ggplot2::geom_line(ggplot2::aes(
-        y = spbiomass,
-        colour = "spbiomass",
-        linetype = "spbiomass"
-      )) +
-      ggplot2::ylim(0, ymax) +
-      ggplot2::labs(x = "Year",
-                    y = "Biomass (x 1,000 lb)",
-                    title = gtitle) +
-      #scale color, axis, and linetype
+    ggplot2::ggplot(
+      data = bio,
+      ggplot2::aes(
+        y = result,
+        x = year,
+        color = data_type,
+        linetype = data_type,
+        group = data_type
+      )
+    ) +
+      ggplot2::geom_line() +
+      ggplot2::geom_point() +
+      ggplot2::scale_linetype_manual(
+        "",
+        values = c("biomass" = "solid", "sp_bio" = "dashed"),
+        labels = c("Total", "Female Spawning Stock")
+      ) +
+      ggplot2::guides(colour =
+                        ggplot2::guide_legend(
+                          override.aes = list(shape = c(16, 1)))) +
       ggplot2::scale_colour_manual(
         "",
         values = c("biomass" = "black", "spbiomass" = "black"),
         labels = c("Total", "Female Spawning Stock")
       ) +
-      ggplot2::scale_x_continuous(breaks = seq(min(years), max(years), 5)) +
-      ggplot2::scale_linetype_manual(
-        "",
-        values = c("biomass" = "solid", "spbiomass" = "dashed"),
-        labels = c("Total", "Female Spawning Stock")
-      ) +
-      ggplot2::guides(colour = ggplot2::guide_legend(override.aes = list(shape = c(16, 1)))) +
-      #set theme
       ggplot2::theme_bw() +
+      ggplot2::scale_x_continuous(breaks = seq(min(bio$year), max(bio$year), 5)) +
       format_axis(1) +
-      format_legend("top")
+      format_legend("top") +
+      ggplot2::ylim(0, ymax) +
+      ggplot2::labs(x = "Year",
+                    y = "Biomass (x 1,000 lb)",
+                    title = gtitle)
+
     if (plotly_plot == "TRUE") {
       p <- plotly::ggplotly(p)
     }

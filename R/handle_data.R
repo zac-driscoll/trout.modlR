@@ -63,3 +63,53 @@ get_parameter <- function(dat,param_name){
     )
   param
 }
+
+#' Get Biomass Data
+#'
+#' A function used to get biomass data from a dat file.
+#'
+#' @param dat A dataframe
+#' @param wide TRUE or FALSE. if TRUE return a wide formatted
+#' dataframe.
+#'
+#' @return
+#' @export
+#'
+#' @examples get_biomass_data(gb_wb_ar)
+get_biomass_data <- function(dat,wide = FALSE,pounds = TRUE) {
+  #get biomass related parameters
+  bio_dat <- get_parameters(
+    gb_wf_ar,
+    c("Biomass","SpBio","years","mu","spp"))
+  #create a biomass dataframe
+  bio_dat <- rbind(
+    tibble::tibble(
+      year = as.integer(names(bio_dat$Biomass)),
+      result = bio_dat$Biomass,
+      data_type = "biomass"
+    ),
+    tibble::tibble(
+      year = as.integer(names(bio_dat$SpBio)),
+      result = bio_dat$SpBio,
+      data_type = "sp_bio"
+    )
+  ) %>%
+    dplyr::mutate(species = bio_dat$spp,
+                  mu = bio_dat$mu)
+  #conver to pounds
+  if(pounds == TRUE){
+    bio_dat <- dplyr::mutate(
+      bio_dat,
+      result = (result * 2.2046) / 1000)
+  }
+  #convert to wider format
+  if(wide == TRUE){
+    bio_dat <-
+      tidyr::pivot_wider(
+      bio_dat,
+      names_from = "data_type",
+      values_from = "result")
+  }
+  #return data
+  bio_dat
+}
