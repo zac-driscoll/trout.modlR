@@ -12,13 +12,14 @@ get_parameters(dat, param_names)
 \item{param_name}{A parameter name (s)}
 }
 \value{
-A vector
+A list
 }
 \description{
-These functions takes an .rdat file output by ADMB and a param_name. The function
-will return data for the given parameter.  See parameter_lookup to see
-available options.
+\code{get_parameters} parses .rdat data output by an ADMB model.  The function
+accepts a vector of parameter names, parses the data, and outputs a list.
+Available optiuons for \code{param_name} can be found in
+\code{parameter_names}.
 }
 \examples{
-get_parameters(gb_wf_ar,"years")
+get_parameters(trout1,c("years","ages"))
 }

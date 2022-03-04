@@ -39,19 +39,15 @@ make_bmsPlots <- function(dat1,
   run_bms_error_check(dat1,dat2,dat3,type)
   #get data
   bio_dat <- get_biomass_data(dat1,dat2,dat3)
-  #plot options
-    #format title
-    gtitle <- make_bms_title(bio_dat,title,type)
-    #y-axis maximum value for plot
+  #format title
+  gtitle <- make_bms_title(bio_dat,title,type)
   #plot data
    p <- make_base_bms_plot(type,bio_dat)
    p <- add_shared_bms_aes(p,bio_dat,type,ymax,gtitle)
-    #plotly plot
-    if (plotly == TRUE) {
-      p <- plotly::ggplotly(p)
-    }
-    #output
-    p
+  #plotly plot
+  if (plotly == TRUE) {p <- plotly::ggplotly(p)}
+  #output
+  p
 }
 
 #' Make Biomass Title
@@ -153,24 +149,27 @@ make_base_bms_plot <- function(type,bio_dat) {
 #'
 #' @return A ggplot2::ggplot() object
 add_shared_bms_aes <- function(p,bio_dat,type,ymax,gtitle){
-  if (is.null(ymax)) {
-    ymax <- max(bio_dat$result)
-  }
-  #x-axis limits
+  #specify xmin and xmax
   xmin <- min(bio_dat$year)
   xmax <- max(bio_dat$year)
-  if(type != "cumulative"){
-  p <-
-    p +
-    ggplot2::ylim(0, ymax)  +
-    scale_color_custom("bw") +
-    ggplot2::scale_linetype_manual(values = c("solid","dashed","dotted"))
+  #non-cumulative specific graph options
+  if (type != "cumulative") {
+    p <-
+      p +
+      scale_color_custom("bw") +
+      ggplot2::scale_linetype_manual(values = c("solid", "dashed", "dotted"))
+    #add ymax if specified
+    if (!is.null(ymax)) {
+      p <- p + ggplot2::ylim(0, ymax)
+    }
   }
+  #cumulative specific graph options
   if(type == "cumulative"){
     p <-
       p +
       scale_fill_custom("bw")
   }
+  #shared graph options
   p +
     ggplot2::theme_bw() +
     ggplot2::scale_x_continuous(breaks = seq(xmin,xmax, 5)) +
@@ -180,7 +179,6 @@ add_shared_bms_aes <- function(p,bio_dat,type,ymax,gtitle){
                   y = "Biomass (x 1,000 lb)",
                   title = gtitle)
 }
-
 #' Error checks for Biomass Plotting Function
 #'
 #' \code{run_bms_error_check} runs error checks for the

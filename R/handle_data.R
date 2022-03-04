@@ -1,18 +1,18 @@
 #' Get model Parameters
 #'
-#' These functions takes an .rdat file output by ADMB and a param_name. The function
-#' will return data for the given parameter.  See parameter_lookup to see
-#' available options.
+#' \code{get_parameters} parses .rdat data output by an ADMB model.  The function
+#' accepts a vector of parameter names, parses the data, and outputs a list.
+#' Available optiuons for \code{param_name} can be found in
+#' \code{parameter_names}.
 #'
 #'
 #' @param dat A list
 #' @param param_name A parameter name (s)
 #'
-#' @return A vector
+#' @return A list
 #' @export
 #'
-#'
-#' @examples get_parameters(gb_wf_ar,"years")
+#' @examples get_parameters(trout1,c("years","ages"))
 get_parameters <- function(dat,param_names){
   params <- purrr::map(.x = param_names,
                        .f = ~get_parameter(param_name = .x,dat = dat))
@@ -22,13 +22,20 @@ get_parameters <- function(dat,param_names){
 
 #' Get Parameter
 #'
-#' @param dat
-#' @param param_name
+#' \code{get_parameter} parses .rdat data output by an ADMB model.
+#' \code{get_parameter} can only retrieve a single parameter at a time. This
+#' function is used within \code{get_parameters} to retrieve multiple parameters.
+#' Available options for \code{param_name} can be found in \code{parameter_names}.
 #'
-#' @return
 #' @export
+#' @return Data specified by \code{param_nam}.  This can be a list, a data.frame,
+#' an integer, or other data types.
+#' @param dat An .rdat file
+#' @param param_name A character object specifying a parameter name. See
+#' \code{parameter_names} for details.
 #'
-#' @examples
+#' @examples get_parameter(trout1,"years")
+#'
 get_parameter <- function(dat,param_name){
   param_df <- dat$dims
   info <- dat$info
@@ -84,6 +91,7 @@ get_parameter <- function(dat,param_name){
 #' @export
 #'
 #' @examples get_biomass_data(trout1)
+#' get_biomass_data(trout1,trout2,grouping = c("data_type","mu"), cumulative = TRUE)
 get_biomass_data <- function(dat1,
                              dat2 = NULL,
                              dat3 = NULL,

@@ -41,4 +41,5 @@ models, or calculate the sum of biomass between models.
 }
 \examples{
 get_biomass_data(trout1)
+get_biomass_data(trout1,trout2,grouping = c("data_type","mu"), cumulative = TRUE)
 }

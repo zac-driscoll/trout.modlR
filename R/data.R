@@ -7,44 +7,68 @@
 #' @format \code{parameter_names} is a data.frame with 24 rows and 2 variables as
 #' follows:
 #' \describe{
-#'   \item{years}{These are year}
-#'   \item{ages}{These are ages}
-#'   \item{yearsGL}{These are Great Lakes Years}
+#'   \item{param_name}{Name of parameter. This can be supplied to
+#'         \code{get_parameter} and \code{get_parameter}}
+#'   \item{descriptions}{A text description of the parameters}
 #' }
 #' @name parameter_names
 #'
 #' @source parameter_names-- Built by hand for trout.modlR
 "parameter_names"
 
-#' Green Bay Whitefish
+#' Whitefish Model Output1
 #'
-#' An example dataset for the package
+#' Whitefish data output from an ADMB model. Used within the package as
+#' example data for testing.
 #'
+#' @format \code{whitefish1} is a list with 56 elements
+#' @name whitefish1
 #'
-#' @format \code{parameter_names} is a data.frame with 24 rows and 2 variables as
-#' follows:
-#' \describe{
-#'   \item{years}{These are year}
-#'   \item{ages}{These are ages}
-#'   \item{yearsGL}{These are Great Lakes Years}
-#' }
-#' @name parameter_names
-#'
-#' @source parameter_names-- Built by hand for trout.modlR
+#' @source ADMB model output
 "whitefish1"
 
-#' Green Bay Whitefish
+
+#' Whitefish Model Output2
 #'
-#' An example dataset for the package
+#' Lake trout data output from an ADMB model. Used within the package as
+#' example data for testing.
 #'
-#' @format \code{parameter_names} is a data.frame with 24 rows and 2 variables as
-#' follows:
-#' \describe{
-#'   \item{years}{These are year}
-#'   \item{ages}{These are ages}
-#'   \item{yearsGL}{These are Great Lakes Years}
-#' }
-#' @name parameter_names
+#' @format \code{whitefish2} is a list with 56 elements
+#' @name whitefish2
 #'
-#' @source parameter_names-- Built by hand for trout.modlR
+#' @source ADMB model output
 "whitefish2"
+
+#' Lake Trout Model output1
+#'
+#' Lake trout data output from an ADMB model. Used within the package as
+#' example data for testing.
+#'
+#' @format \code{trout1} is a list with 44 elements
+#' @name trout1
+#'
+#' @source ADMB model output
+"trout1"
+
+#' Lake Trout Model output2
+#'
+#' Lake trout data output from an ADMB model. Used within the package as
+#' example data for testing.
+#'
+#' @format \code{trout2} is a list with 44 elements
+#' @name trout2
+#'
+#' @source ADMB model output
+"trout2"
+
+#' Lake Trout Model output3
+#'
+#' Lake trout data output from an ADMB model. Used within the package as
+#' example data for testing.
+#'
+#' @format \code{trout3} is a list with 44 elements
+#' @name trout3
+#'
+#' @source ADMB model output
+"trout3"
+

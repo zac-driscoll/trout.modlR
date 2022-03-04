@@ -3,55 +3,25 @@
 \docType{data}
 \name{parameter_names}
 \alias{parameter_names}
-\alias{whitefish1}
-\alias{whitefish2}
 \title{Parameter Lookup Table}
 \format{
 \code{parameter_names} is a data.frame with 24 rows and 2 variables as
 follows:
 \describe{
-  \item{years}{These are year}
-  \item{ages}{These are ages}
-  \item{yearsGL}{These are Great Lakes Years}
-}
-
-\code{parameter_names} is a data.frame with 24 rows and 2 variables as
-follows:
-\describe{
-  \item{years}{These are year}
-  \item{ages}{These are ages}
-  \item{yearsGL}{These are Great Lakes Years}
-}
-
-\code{parameter_names} is a data.frame with 24 rows and 2 variables as
-follows:
-\describe{
-  \item{years}{These are year}
-  \item{ages}{These are ages}
-  \item{yearsGL}{These are Great Lakes Years}
+  \item{param_name}{Name of parameter. This can be supplied to
+        \code{get_parameter} and \code{get_parameter}}
+  \item{descriptions}{A text description of the parameters}
 }
 }
 \source{
 parameter_names-- Built by hand for trout.modlR
-
-parameter_names-- Built by hand for trout.modlR
-
-parameter_names-- Built by hand for trout.modlR
 }
 \usage{
 parameter_names
-
-whitefish1
-
-whitefish2
 }
 \description{
 This table lists all of the available options for the \code{get_parameter}
 and \code{get_parameter} functions. A description is provided for each
 option.
-
-An example dataset for the package
-
-An example dataset for the package
 }
 \keyword{datasets}

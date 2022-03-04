@@ -7,11 +7,22 @@
 get_parameter(dat, param_name)
 }
 \arguments{
-\item{param_name}{}
+\item{dat}{An .rdat file}
+
+\item{param_name}{A character object specifying a parameter name. See
+\code{parameter_names} for details.}
 }
 \value{
-
+Data specified by \code{param_nam}.  This can be a list, a data.frame,
+an integer, or other data types.
 }
 \description{
-Get Parameter
+\code{get_parameter} parses .rdat data output by an ADMB model.
+\code{get_parameter} can only retrieve a single parameter at a time. This
+function is used within \code{get_parameters} to retrieve multiple parameters.
+Available options for \code{param_name} can be found in \code{parameter_names}.
+}
+\examples{
+get_parameter(trout1,"years")
+
 }
