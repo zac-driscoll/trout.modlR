@@ -20,7 +20,6 @@ get_parameters <- function(dat,param_names){
   params
 }
 
-
 #' Get Parameter
 #'
 #' @param dat
@@ -84,7 +83,7 @@ get_parameter <- function(dat,param_name){
 #' @return A tibble
 #' @export
 #'
-#' @examples get_biomass_data(
+#' @examples get_biomass_data(trout1)
 get_biomass_data <- function(dat1,
                              dat2 = NULL,
                              dat3 = NULL,
@@ -109,13 +108,10 @@ get_biomass_data <- function(dat1,
 }
 #' Get Biomass Data1
 #'
-#' A function used to get biomass data from a single rdat model output file.
-#'
-#' @param dat A dataframe
+#' A function used to get biomass data from a single rdat model
+#' output file.
 #'
 #' @noRd
-#'
-#' @examples get_biomass_data1(gb_wb_ar)
 get_biomass_data1 <- function(dat) {
   #get biomass related parameters
   bio_dat <- get_parameters(
@@ -141,18 +137,12 @@ get_biomass_data1 <- function(dat) {
   bio_dat
 }
 
-#' Title
+#' Get Biomasss Data 2
 #'
-#' @param dat1
-#' @param dat2
-#' @param dat3
-#' @param grouping
-#' @param cumulative
+#' A helper function used in \code{get_biomass_data}.
+#' This functions combines biomass data for multipe models.
 #'
-#' @return
-#' @export
-#'
-#' @examples
+#' @noRd
 get_biomass_data2 <- function(dat1,
                               dat2,
                               dat3 = NULL,

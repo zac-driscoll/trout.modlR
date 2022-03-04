@@ -31,7 +31,7 @@
 #' @name parameter_names
 #'
 #' @source parameter_names-- Built by hand for trout.modlR
-"gb_wf_ar"
+"whitefish1"
 
 #' Green Bay Whitefish
 #'
@@ -47,4 +47,4 @@
 #' @name parameter_names
 #'
 #' @source parameter_names-- Built by hand for trout.modlR
-"gb_wn_ar"
+"whitefish2"

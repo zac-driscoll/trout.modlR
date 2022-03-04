@@ -3,8 +3,8 @@
 \docType{data}
 \name{parameter_names}
 \alias{parameter_names}
-\alias{gb_wf_ar}
-\alias{gb_wn_ar}
+\alias{whitefish1}
+\alias{whitefish2}
 \title{Parameter Lookup Table}
 \format{
 \code{parameter_names} is a data.frame with 24 rows and 2 variables as
@@ -41,9 +41,9 @@ parameter_names-- Built by hand for trout.modlR
 \usage{
 parameter_names
 
-gb_wf_ar
+whitefish1
 
-gb_wn_ar
+whitefish2
 }
 \description{
 This table lists all of the available options for the \code{get_parameter}
