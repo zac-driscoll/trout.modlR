@@ -54,3 +54,135 @@ format_legend <- function(side) {
                    legend.direction = "vertical")
   }
 }
+
+
+#' Apply custom color palettes to ggplot2 plots
+#'
+#' A function used to apply custom color palettes to ggplot2 plots.
+#' See custom_palletes for a list of palette options.  This  was adapted from a
+#' function found in the ggtheme package.
+#'
+#' @param pal A character object
+#'
+#' @return
+#' @export
+#'
+#' @examples \dontrun{scale_color_custom("muddy_river")}
+scale_color_custom <- function(pal){
+  ggplot2::discrete_scale("color","mmsd",custom_pal(pal))}
+
+#' Apply custom fill palettes to ggplot2 plots
+#'
+#' A function used to apply custom color palettes to ggplot2 plots.
+#' See custom_palletes for a list of palette options.  This  was adapted from a
+#' function found in the ggtheme package.
+#'
+#' @param pal A character object
+#'
+#' @return
+#' @export
+#'
+#' @examples \dontrun{scale_color_custom("muddy_river")}
+scale_fill_custom <- function(pal){
+  ggplot2::discrete_scale("fill","mmsd",custom_pal(pal))}
+
+#' Custom Pallette
+#'
+#' Used to create a custom palette of variable size
+#'
+#' @param pal
+#'
+#' @return
+#' @export
+#' @noRd
+#'
+#' @examples custom_pal("bw")
+custom_pal <- function(pal){
+
+  palettes <- custom_palettes[[pal]]
+
+  max_n <- length(palettes)
+  f <- function(n) {
+    check_pal_n(n, max_n)
+    palettes[[n]]
+  }
+  attr(f, "max_n") <- f
+  f
+}
+
+#' Check Max palette number
+#'
+#' A helper function used to check the number of objects passed to an aesthetic
+#' don't exceed the maximum number of colors within a palette
+#'
+#' @param n number of objects
+#' @param max_n max number of colors in a palette
+#'
+#' @return
+#' @noRd
+check_pal_n <- function(n, max_n) {
+  if (n > max_n) {
+    warning("This palette can handle a maximum of ", max_n, " values.",
+            "You have supplied ", n, ".")
+  } else if (n < 0) {
+    stop("`n` must be a non-negative integer.")
+  }
+}
+
+
+#' Apply custom color palettes to ggplot2 plots
+#'
+#' A function used to apply custom color palettes to ggplot2 plots.
+#' See custom_palletes for a list of palette options.  This  was adapted from a
+#' function found in the ggtheme package.
+#'
+#' @param pal A character object
+#'
+#' @return
+#' @export
+#'
+#' @examples \dontrun{scale_color_custom("muddy_river")}
+scale_linetype_custom <- function() {
+  ggplot2::discrete_scale("linetype", "mmsd", custom_linetype())
+}
+#' Custom Pallette
+#'
+#' Used to create a custom palette of variable size
+#'
+#' @param pal
+#'
+#' @return
+#' @export
+#' @noRd
+#'
+#' @examples custom_lines()
+custom_linetype <- function(){
+
+  lines <- c("solid","dashed","dotted")
+
+  max_n <- length(lines)
+  f <- function(n) {
+    # check_lines_n(n, max_n)
+    lines[[n]]
+  }
+  attr(f, "max_n") <- f
+  f
+}
+#' Check Max palette number
+#'
+#' A helper function used to check the number of objects passed to an aesthetic
+#' don't exceed the maximum number of colors within a palette
+#'
+#' @param n number of objects
+#' @param max_n max number of colors in a palette
+#'
+#' @return
+#' @noRd
+check_lines_n <- function(n, max_n) {
+  if (n > max_n) {
+    warning("This palette can handle a maximum of ", max_n, " values.",
+            "You have supplied ", n, ".")
+  } else if (n < 0) {
+    stop("`n` must be a non-negative integer.")
+  }
+}
