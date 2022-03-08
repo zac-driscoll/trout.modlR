@@ -1,0 +1,99 @@
+name,object_class,super_object,super_object_class,description
+model,vector,info,list,Model Name; Modeler assigned and usually contains the management unit and version
+species,vector,info,list,Model Species
+mu,vector,info,list,Model management unit
+targA,vector,dims,list,Target annual instantaneous mortality rate
+fyear,vector,dims,list,First model year
+lyear,vector,dims,list,Last model year
+fyearGL,vector,dims,list,First year commercial gillnet fishery
+lyearGL,vector,dims,list,Last year commercial gillnet fishery
+fyearTP,vector,dims,list,First year commercial trapnet fishery
+lyearTP,vector,dims,list,Last year commercial trapnet fishery
+fyearR,vector,dims,list,First year recreational fishery
+lyearR,vector,dims,list,Last year recreational fishery
+fyearS1,vector,dims,list,First year survey 1
+lyearS1,vector,dims,list,Last year survey 1
+fyearS2,vector,dims,list,First year survey 2
+lyearS2,vector,dims,list,Last year survey 2
+fage,vector,dims,list,First model age
+lage,vector,dims,list,Last model age
+fageGL,vector,dims,list,First age in commercial gillnet fishery
+lageGL,vector,dims,list,Last age in commercial gillnet fishery
+fageTP,vector,dims,list,First age in commercial trapnet fishery
+lageTP,vector,dims,list,Last age in commercial trapnet fishery
+fageR,vector,dims,list,First age in recreational fishery
+lageR,vector,dims,list,Last age in recreational fishery
+fageS1,vector,dims,list,First age in survey 1
+lageS1,vector,dims,list,Last age in survey 1
+fageS2,vector,dims,list,First age in survey 2
+lageS2,vector,dims,list,Last age in survey 2
+rhoSR,vector,variance,list,Stock-recruitment variance multiplier
+rhoCG,vector,variance,list,Gillnet catch variance multiplier
+rhoCT,vector,variance,list,Trapnet catch variance multiplier
+rhoCR,vector,variance,list,Recreational catch variance multiplier
+rhoEG,vector,variance,list,Gillnet effort variance multiplier
+rhoET,vector,variance,list,Trapnet effort variance multiplier
+rhoER,vector,variance,list,Recreational effort variance multiplier
+rhosel,vector,variance,list,Selectivity variance multiplier
+YPR,vector,BRPs,list,Yield per recruit
+SPR,vector,Nage,list,Spawning potential ratio
+watage,data.frame,,,Weight at Age
+latage,data.frame,,,Length at Age
+matage,data.frame,,,Maturity at Age
+growth,data.frame,,,Growth at Age
+Biomass,vector,,,Biomass
+SpBio,vector,,,Spawning stock biomass
+GLpa,data.frame,,,Commercial gillnet estimated proportion at age
+obsGLpa,data.frame,,,Commercial gillnet observed proportion at age
+TPpa,data.frame,,,Commercial trapnet estimated proportion at age
+obsTPpa,data.frame,,,Commercial trapnet observed proportion at age
+RCpa,data.frame,,,Recreational fishery estimated proportion at age
+obsRCpa,data.frame,,,Recreational fishery observed proportion at age
+S1pa,data.frame,,,Survey1 estimated proportion at age
+obsS1pa,data.frame,,,Survey1 observed proportion at age
+S2pa,data.frame,,,Survey2 estimated proportion at age
+obsS2pa,data.frame,,,Survey2 observed proportion at age
+Z,data.frame,,,Instantaneous mortality rate at age
+M,data.frame,,,Natural mortality rate at age
+FGL,data.frame,,,Commercial gillnet fishing mortality rate at age
+FTP,data.frame,,,Commercial trapnet fishing mortality rate at age
+FRC,data.frame,,,Recreational fishing mortality rate at age
+Mlamp,data.frame,,,Sea Lamprey mortality rate at age
+GLcatN,vector,,,Commercial gillnet fishery estimated harvest
+obsGLcatN,vector,,,Commercial gillnet fishery observed harvest
+GLcat,vector,,,Commercial gillnet fishery estimated yield
+obsGLcat,vector,,,Commercial gillnet fishery observed yield
+TPcatN,vector,,,Commercial trapnet fishery estimated harvest
+obsTPcatN,vector,,,Commercial trapnet fishery observed harvest
+TPcat,vector,,,Commercial trapnet fishery estimated yield
+obsTPcat,vector,,,Commercial trapnet fishery observed yield
+RCcatN,vector,,,Recreational fishery estimated harvest
+obsRCcatN,vector,,,Recreational fishery observed harvest
+RCcat,vector,,,Recreational fishery estimated yield
+obsRCcat,vector,,,Recreational fishery observed yield
+GLeff,vector,,,Commercial gillnet fishery estimated effort
+obsGLeff,vector,,,Commercial gillnet fishery observed effort
+TPeff,vector,,,Commercial trapnet fishery estimated effort
+obsTPeff,vector,,,Commercial trapnet fishery observed effort
+RCeff,vector,,,Recreational fishery estimated effort
+obsRCeff,vector,,,Recreational fishery observed effort
+resGLcat,vector,,,Commercial gillnet fishery harvest residuals
+resGLeff,vector,,,Commercial gillnet fishery effort residuals
+resGLpa,data.frame,,,Commercial gillnet fishery proportion at age residuals
+resTPcat,vector,,,Commercial trapnet fishery harvest residuals
+resTPeff,vector,,,Commercial trapnet fishery effort residuals
+resTPpa,data.frame,,,Commercial trapnet fishery proportion at age residuals
+resRCcat,vector,,,Recreational fishery harvest residuals
+resRCeff,vector,,,Recreational fishery effort residuals
+resRCpa,data.frame,,,Recreational fishery proportion at age residuals
+S1cpue,vector,,,Survey1 estimated catch per unit effort
+obsS1cpue,vector,,,Survey1 observed catch per unit effort
+S2cpue,vector,,,Survey2 estimated catch per unit effort
+obsS2cpue,vector,,,Survey2 observed catch per unit effort
+selTP,data.frame,,,Commercial trapnet fishery selectivity
+selGL,data.frame,,,Commercial gillnet fishery selectivity
+selRC,data.frame,,,Recreational fishery selectivity
+qGL,vector,,,Commercial gillnet fishery catchability
+qTP,vector,,,Commercial trapnet fishery catchability
+qRC,vector,,,Recreational fishery catchability
+yoy_index,vector,,,Young of year survey CPE
