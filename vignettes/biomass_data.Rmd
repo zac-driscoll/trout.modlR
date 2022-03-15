@@ -1,0 +1,186 @@
+---
+title: "Biomass Data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{biomass_data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.width = 6,
+  fig.height = 4,
+  comment = "#>"
+)
+
+```
+
+```{r setup}
+library(trout.modlR)
+
+```
+
+trout.Modlr currently has two functions to handle biomass data .  The 
+get_biomass_data() can be used to parse data from one to three .rdat files
+at a time. The  make_bms_plot() function can be used to plot biomass data.
+Below are descriptions of  how to use these functions. 
+
+
+# Get Biomass Data
+
+Biomass data can be parsed from an .rdat file or files using the 
+get_biomass_data()  function.
+
+```{r biomass1}
+
+trout_bms1 <- get_biomass_data(dat1 = trout1)
+head(trout_bms1)
+
+
+```
+
+The get_biomass_data() function can parse up to three .rdat files at a time.
+By default, biomass data from the will be appended into a single tibble.
+
+```{r biomass2}
+
+trout_bms2 <-get_biomass_data(dat1 = trout1, dat2 = trout2, dat3 = trout3)
+
+DT::datatable(trout_bms2)
+
+
+```
+
+## Summing Biomass
+
+The argument cumulative can be used to take the sum of 
+biomass values from the models.  The grouping arguement specifies how
+to group the models when calculating the sum. By default, get_biomass_data()
+"data_type" and "mu".  Other options include "species", "model", and "year".
+
+
+### Default Grouping 
+
+```{r cumulative1}
+#default cumualtive with grouping = data_type and year
+trout_bms3<-get_biomass_data(dat1 = trout1, dat2 = trout2,
+                              cumulative = TRUE)
+
+
+DT::datatable(trout_bms3)
+
+```
+
+### Custom Grouping
+
+```{r cumulative2}
+#default cumulative with grouping = data_type and year
+trout_bms4<-get_biomass_data(dat1 = trout1, dat2 = trout2,
+                              cumulative = TRUE,grouping = c("year","model"))
+
+
+DT::datatable(trout_bms4)
+
+```
+
+
+## Units 
+
+By default, get_biomass_data() outputs biomass in pounds.  The pounds arguement
+can be set to false to output biomass in kg's.
+
+
+```{r kg, eval = FALSE}
+
+trout_kg <- get_biomass_data(dat1 = trout1, pounds = FALSE)
+
+```
+
+
+# Plot Biomass Data 
+
+The make_bms_plot() can be used to plot biomass data for one to three models.
+make_bms_plot() takes an .rdat file as input and uses the get_biomass_data()
+function to parse about the data. 
+
+## Single Plot 
+When a single .rdat file is passed to the  function 
+a plot of the biomass is for that model is produced. Data are grouped by
+"data_type".
+
+```{r single_plot}
+
+make_bmsPlots(dat1 = trout1)
+
+```
+
+
+## Two or more models
+
+Two or models can be passed to make_bmsPlots() to compare biomass data. Two
+model types can be produced. These are "cumulative" and "multiple".
+
+### Compare Models
+
+When two to three models are passed to make_bmsPlots() and type is set to 
+"multiple" biomass data are compared between models.
+
+```{r multiple_plots}
+
+make_bmsPlots(dat1 = trout1, dat2 = trout2, type = "multiple")
+
+```
+
+### Sum Models 
+
+When two to three models are passed to make_bmsPlots() and type is set to 
+"cumulative" a stacked area plot is produced representing the sum of the models
+biomass.
+
+```{r cumulative_plots}
+
+make_bmsPlots(dat1 = trout1, dat2 = trout2, type = "cumulative")
+
+```
+
+
+## Additional Plotting Options
+
+### Plotly Plot
+
+The plotly argument can be set to TRYE to output an interactive ggplotly object.
+
+```{r plotly}
+
+make_bmsPlots(dat1 = trout1, plotly = TRUE)
+
+
+```
+
+### Title
+
+The title argument can be used to provide a custom title to the plot.
+If left NULL, a title will automatically be generated.
+
+```{r title}
+
+make_bmsPlots(dat1 = trout1, title = "Trout are cool!")
+
+
+```
+
+
+### Y Axis Maximum
+
+The ymax arguement can be used to specify the upper limit for the y axis.
+If left blank this will be automatically chosen based on the input data. 
+
+```{r y_max}
+
+make_bmsPlots(dat1 = trout1, ymax = 1000)
+              
+```
+
+

@@ -72,3 +72,14 @@
 #' @source ADMB model output
 "trout3"
 
+
+#' Custom Palettes
+#'
+#' Custom palettes to use for the trout.modlR package
+#'
+#' @format \code{custom_palettes}
+#' @name custom_palettes
+#'
+#' @source Made for pacakge
+"custom_palettes"
+

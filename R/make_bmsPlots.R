@@ -65,10 +65,16 @@ make_bmsPlots <- function(dat1,
 #'
 make_bms_title <- function(bio_dat, title, type) {
   #Premade title
-  if (type != "cumulative") {
+  if (type == "single") {
     gtitle <-
       paste0("Estimated ", bio_dat$species[1], " Biomass in ", bio_dat$mu[1])
   }
+
+  if (type == "multiple") {
+    gtitle <-
+      paste0("Estimated ", bio_dat$species[1], " Biomass")
+  }
+
   #create title for cumulative plot
   if (type == "cumulative") {
     gtitle <- paste("Cumulative Estimated Biomass")

@@ -99,7 +99,7 @@ scale_fill_custom <- function(pal){
 #' @examples custom_pal("bw")
 custom_pal <- function(pal){
 
-  palettes <- custom_palettes[[pal]]
+  palettes <- trout.modlR::custom_palettes[[pal]]
 
   max_n <- length(palettes)
   f <- function(n) {
