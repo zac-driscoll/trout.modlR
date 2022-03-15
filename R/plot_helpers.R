@@ -113,7 +113,7 @@ custom_pal <- function(pal){
 #' Check Max palette number
 #'
 #' A helper function used to check the number of objects passed to an aesthetic
-#' don't exceed the maximum number of colors within a palette
+#' don't exceed the maximum number of colors within a palette.
 #'
 #' @param n number of objects
 #' @param max_n max number of colors in a palette
