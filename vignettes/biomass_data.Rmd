@@ -58,7 +58,10 @@ DT::datatable(trout_bms2)
 The argument cumulative can be used to take the sum of 
 biomass values from the models.  The grouping arguement specifies how
 to group the models when calculating the sum. By default, get_biomass_data()
-"data_type" and "mu".  Other options include "species", "model", and "year".
+"data_type" and "mu".  Other options include "species", "model", and "year". 
+Since female stocking biomass is a subset of total biomass, it never makes
+sense to sum these.  As such, "data_type" is a required grouping parameter
+and cannot be turned off. 
 
 
 ### Default Grouping 

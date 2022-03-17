@@ -9,7 +9,8 @@
 #' @param dat3 An rdat file containing a model output
 #' @param grouping Grouping parameters. This determines which groups will be
 #' used to sum biomass if cumulative = TRUE. Options include \code{year},
-#' \code{data_type}, \code{mu}, \code{species}, and \code{model}.
+#' \code{mu}, \code{species}, and \code{model}. \code{data_type} is a required
+#' option and can not be turned off.
 #' @param cumulative TRUE of FALSE(default).  If TRUE, the sum of biomass will
 #' be calculate by \code{grouping}. This can work when multiple models are supplied
 #' @param pounds TRUE or FALSE.  If TRUE, converts from kg's to pounds.
@@ -23,7 +24,7 @@
 get_biomass_data <- function(dat1,
                              dat2 = NULL,
                              dat3 = NULL,
-                             grouping = c("year","data_type"),
+                             grouping = c("year"),
                              cumulative = FALSE,
                              pounds = TRUE) {
   run_get_bms_error_check(cumulative, grouping,dat2,dat3)
@@ -44,7 +45,8 @@ get_biomass_data <- function(dat1,
   }
   #sum data across groups
   if (isTRUE(cumulative)) {
-    data_groups <- rlang::syms(grouping)
+    data_groups <- rlang::syms(c(grouping,"data_type"))
+
     bio_dat <- bio_dat %>%
       dplyr::group_by(!!!data_groups) %>%
       dplyr::summarise(result = sum(result))
