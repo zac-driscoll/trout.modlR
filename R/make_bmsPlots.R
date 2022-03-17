@@ -1,6 +1,6 @@
-#' Make Biomass Plot
+#' Plot Biomass Data
 #'
-#'  \code{make_bmsPlot} plots biomass for a given model or models.
+#'  \code{plot_biomass_data} plots biomass for a given model or models.
 #'  Different graphs can be output by using the 'type' argument.
 #'
 #' @param dat1 A .rdat containing ADMB output
@@ -25,10 +25,10 @@
 #' @return A ggplot2::ggplot() or plotly::ggplotly() object
 #' @export
 #'
-#' @examples make_bmsPlots(dat1 = trout1,type = 'single')
-#' make_bmsPlots(dat1 = trout1,dat2 = trout2, type = 'multiple')
-#' make_bmsPlots(dat1 = trout1,dat2 = trout2, type = 'cumulative')
-make_bmsPlots <- function(dat1,
+#' @examples plot_biomass_data(dat1 = trout1,type = 'single')
+#' plot_biomass_data(dat1 = trout1,dat2 = trout2, type = 'multiple')
+#' plot_biomass_data(dat1 = trout1,dat2 = trout2, type = 'cumulative')
+plot_biomass_data <- function(dat1,
                            dat2 = NULL,
                            dat3 = NULL,
                            title = NULL,
@@ -89,7 +89,7 @@ make_bms_title <- function(bio_dat, title, type) {
 
 #' Make Biomass Base Plot
 #'
-#' A helper function used within \code{make_bmsPlot}.
+#' A helper function used within \code{plot_biomass_data}.
 #' This provides the base plot for the final plot. The
 #' \code{type} determines what base is used.
 #'
@@ -143,7 +143,7 @@ make_base_bms_plot <- function(type,bio_dat) {
 #' Add Shared Aesthetics to Biomass Plot
 #'
 #' A helper function used to add additional customization
-#' to the output of \code{make_base_bms_plot}.
+#' to the output of \code{plot_biomass_data}.
 #'
 #' @param p A ggplot2::ggplot() object
 #' @param bio_dat Biomass Data
@@ -188,7 +188,7 @@ add_shared_bms_aes <- function(p,bio_dat,type,ymax,gtitle){
 #' Error checks for Biomass Plotting Function
 #'
 #' \code{run_bms_error_check} runs error checks for the
-#' \code{make_bmsPlots} function.
+#' \code{plot_biomass_data} function.
 #'
 #' @param dat1 A .rdat file containing ADMB data output
 #' @param dat2 A .rdat file containing ADMB data output

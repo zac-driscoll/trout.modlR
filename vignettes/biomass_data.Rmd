@@ -112,36 +112,36 @@ a plot of the biomass is for that model is produced. Data are grouped by
 
 ```{r single_plot}
 
-make_bmsPlots(dat1 = trout1)
+plot_biomass_data(dat1 = trout1)
 
 ```
 
 
 ## Two or more models
 
-Two or models can be passed to make_bmsPlots() to compare biomass data. Two
+Two or models can be passed to plot_biomass_data() to compare biomass data. Two
 model types can be produced. These are "cumulative" and "multiple".
 
 ### Compare Models
 
-When two to three models are passed to make_bmsPlots() and type is set to 
+When two to three models are passed to plot_biomass_data() and type is set to 
 "multiple" biomass data are compared between models.
 
 ```{r multiple_plots}
 
-make_bmsPlots(dat1 = trout1, dat2 = trout2, type = "multiple")
+plot_biomass_data(dat1 = trout1, dat2 = trout2, type = "multiple")
 
 ```
 
 ### Sum Models 
 
-When two to three models are passed to make_bmsPlots() and type is set to 
+When two to three models are passed to plot_biomass_data() and type is set to 
 "cumulative" a stacked area plot is produced representing the sum of the models
 biomass.
 
 ```{r cumulative_plots}
 
-make_bmsPlots(dat1 = trout1, dat2 = trout2, type = "cumulative")
+plot_biomass_data(dat1 = trout1, dat2 = trout2, type = "cumulative")
 
 ```
 
@@ -154,7 +154,7 @@ The plotly argument can be set to TRYE to output an interactive ggplotly object.
 
 ```{r plotly}
 
-make_bmsPlots(dat1 = trout1, plotly = TRUE)
+plot_biomass_data(dat1 = trout1, plotly = TRUE)
 
 
 ```
@@ -166,7 +166,7 @@ If left NULL, a title will automatically be generated.
 
 ```{r title}
 
-make_bmsPlots(dat1 = trout1, title = "Trout are cool!")
+plot_biomass_data(dat1 = trout1, title = "Trout are cool!")
 
 
 ```
@@ -179,7 +179,7 @@ If left blank this will be automatically chosen based on the input data.
 
 ```{r y_max}
 
-make_bmsPlots(dat1 = trout1, ymax = 1000)
+plot_biomass_data(dat1 = trout1, ymax = 1000)
               
 ```
 
