@@ -8,7 +8,7 @@ get_biomass_data(
   dat1,
   dat2 = NULL,
   dat3 = NULL,
-  grouping = c("year", "data_type"),
+  grouping = c("year"),
   cumulative = FALSE,
   pounds = TRUE
 )
@@ -22,7 +22,8 @@ get_biomass_data(
 
 \item{grouping}{Grouping parameters. This determines which groups will be
 used to sum biomass if cumulative = TRUE. Options include \code{year},
-\code{data_type}, \code{mu}, \code{species}, and \code{model}.}
+\code{mu}, \code{species}, and \code{model}. \code{data_type} is a required
+option and can not be turned off.}
 
 \item{cumulative}{TRUE of FALSE(default).  If TRUE, the sum of biomass will
 be calculate by \code{grouping}. This can work when multiple models are supplied}
