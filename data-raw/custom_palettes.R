@@ -1,6 +1,8 @@
 library(purrr)
 
-bw <- c("black","gray70","gray60","gray50","gray40")
+bw <- c("black","gray70",
+        "gray60","gray50","gray40","gray30",
+        "gray20","gray10")
 
 pal_names <- c("bw")
 proc_cols <- function(pals) {

@@ -65,7 +65,8 @@ get_parameter <- function(dat,param_name){
          "obsGLcat" = dat$obsGLcat,
          "obsTPcat" = dat$obsTPcat,
          "obsTWcat" = dat$obsTWcat,
-         "obsRCcat" = dat$obsRCcat
+         "obsRCcat" = dat$obsRCcat,
+         "model_name" = dat$model_name
     )
   param
 }

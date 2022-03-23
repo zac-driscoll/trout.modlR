@@ -4,9 +4,7 @@
 #' model outputs. This can be used to extract data from a single model, multiple
 #' models, or calculate the sum of biomass by grouping parameters.
 #'
-#' @param dat1 An rdat file containing a model output
-#' @param dat2 An rdat file containing a model output
-#' @param dat3 An rdat file containing a model output
+#' @param dat A list of rdat files containing model outputs.
 #' @param grouping Grouping parameters. This determines which groups will be
 #' used to sum biomass if cumulative = TRUE. Options include \code{year},
 #' \code{mu}, \code{species}, and \code{model}. \code{data_type} is a required
@@ -19,24 +17,15 @@
 #' @return A tibble
 #' @export
 #'
-#' @examples get_biomass_data(trout1)
-#' get_biomass_data(trout1,trout2,grouping = c("data_type","mu"), cumulative = TRUE)
-get_biomass_data <- function(dat1,
-                             dat2 = NULL,
-                             dat3 = NULL,
+#' @examples get_biomass_data(list(trout1))
+#' get_biomass_data(list(trout1,trout2),grouping = c("data_type","mu"), cumulative = TRUE)
+get_biomass_data <- function(dat,
                              grouping = c("year"),
                              cumulative = FALSE,
                              pounds = TRUE) {
-  run_get_bms_error_check(cumulative, grouping,dat2,dat3)
+  # run_get_bms_error_check(cumulative, grouping,dat2,dat3)
   #get biomass data
-  bio_dat <-
-    #if a single model is supplied
-    if (is.null(dat2) & is.null(dat3)) {
-      get_biomass_data1(dat1)
-    #if multiple models are supplied
-    } else{
-      get_biomass_data2(dat1, dat2, dat3)
-    }
+  bio_dat <- get_biomass_data2(dat)
   #convert to pounds
   if(pounds == TRUE){
     bio_dat <- dplyr::mutate(
@@ -63,23 +52,26 @@ get_biomass_data1 <- function(dat) {
   #get biomass related parameters
   bio_dat <- get_parameters(
     dat,
-    c("Biomass","SpBio","years","mu","spp"))
+    c("Biomass","SpBio","years","mu","spp","model_name"))
   #create a biomass dataframe
   bio_dat <- rbind(
     tibble::tibble(
       year = as.integer(names(bio_dat$Biomass)),
       result = bio_dat$Biomass,
-      data_type = "Total"
+      data_type = "Total",
+      model = bio_dat$model_name
     ),
     tibble::tibble(
       year = as.integer(names(bio_dat$SpBio)),
       result = bio_dat$SpBio,
-      data_type = "Female Spawning Stock"
+      data_type = "Female Spawning Stock",
+      model= bio_dat$model_name
     )
   ) %>%
     dplyr::mutate(species = bio_dat$spp,
                   mu = bio_dat$mu,
-                  data_type = forcats::fct_rev(data_type))
+                  data_type = forcats::fct_rev(data_type)) %>%
+    dplyr::relocate(model, .after = mu)
   #return data
   bio_dat
 }
@@ -90,18 +82,13 @@ get_biomass_data1 <- function(dat) {
 #' This functions combines biomass data for multipe models.
 #'
 #' @noRd
-get_biomass_data2 <- function(dat1,
-                              dat2,
-                              dat3 = NULL) {
-  bio_dat <- list(dat1, dat2, dat3)
+get_biomass_data2 <- function(bio_dat) {
   bio_dat <- bio_dat[lengths(bio_dat) != 0]
   bio_dat <- purrr::map2_df(
     .x = bio_dat,
     .y = 1:length(bio_dat),
     .f =
-      ~ get_biomass_data1(.x) %>%
-      dplyr::mutate(model = paste("model", .y))
-  )
+      ~ get_biomass_data1(.x))
   bio_dat
 }
 
@@ -129,13 +116,4 @@ run_get_bms_error_check <- function(cumulative, grouping,dat2,dat3) {
       )
     )
   }
-  if ("model" %in% grouping & is.null(dat2) & is.null(dat2)) {
-    stop(
-      paste(
-        "'model' cannot be used a grouping parameter when only one",
-        "model is supplied."
-      )
-    )
-  }
 }
-

@@ -4,21 +4,10 @@
 \alias{get_biomass_data}
 \title{Get Biomass Data}
 \usage{
-get_biomass_data(
-  dat1,
-  dat2 = NULL,
-  dat3 = NULL,
-  grouping = c("year"),
-  cumulative = FALSE,
-  pounds = TRUE
-)
+get_biomass_data(dat, grouping = c("year"), cumulative = FALSE, pounds = TRUE)
 }
 \arguments{
-\item{dat1}{An rdat file containing a model output}
-
-\item{dat2}{An rdat file containing a model output}
-
-\item{dat3}{An rdat file containing a model output}
+\item{dat}{A list of rdat files containing model outputs.}
 
 \item{grouping}{Grouping parameters. This determines which groups will be
 used to sum biomass if cumulative = TRUE. Options include \code{year},
@@ -41,6 +30,6 @@ model outputs. This can be used to extract data from a single model, multiple
 models, or calculate the sum of biomass by grouping parameters.
 }
 \examples{
-get_biomass_data(trout1)
-get_biomass_data(trout1,trout2,grouping = c("data_type","mu"), cumulative = TRUE)
+get_biomass_data(list(trout1))
+get_biomass_data(list(trout1,trout2),grouping = c("data_type","mu"), cumulative = TRUE)
 }
